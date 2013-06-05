@@ -1,9 +1,13 @@
+execute pathogen#infect()
 syntax on
+set nocompatible
+set smartindent
 set autoindent
 set number
 set tabstop=2
 set shiftwidth=2
 set expandtab
+filetype indent on
 imap <up> <nop>
 imap <down> <nop>
 imap <left> <nop>
@@ -22,3 +26,4 @@ function! TrimWhiteSpace()
   %s/\s\+$//e
 endfunction
 autocmd BufWritePre     *.rb :call TrimWhiteSpace()
+autocmd BufWritePre     *.js :call TrimWhiteSpace()
