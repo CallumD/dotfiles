@@ -1,9 +1,12 @@
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%101v.\+/
 execute pathogen#infect()
 syntax on
 set nocompatible
 set smartindent
 set autoindent
 set number
+set ruler
 set tabstop=2
 set shiftwidth=2
 set expandtab
