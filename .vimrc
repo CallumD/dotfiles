@@ -1,5 +1,3 @@
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%101v.\+/
 execute pathogen#infect()
 syntax on
 set nocompatible
@@ -30,3 +28,5 @@ function! TrimWhiteSpace()
 endfunction
 autocmd BufWritePre     *.rb :call TrimWhiteSpace()
 autocmd BufWritePre     *.js :call TrimWhiteSpace()
+:au BufWinEnter * let w:m1=matchadd('Search', '\%<100v.\%>95v', -1)
+:au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>100v.\+', -1)
