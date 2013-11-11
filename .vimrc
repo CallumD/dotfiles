@@ -26,6 +26,7 @@ autocmd BufWinLeave * call clearmatches()
 function! TrimWhiteSpace()
   %s/\s\+$//e
 endfunction
+autocmd BufWritePre     *.rake :call TrimWhiteSpace()
 autocmd BufWritePre     *.rb :call TrimWhiteSpace()
 autocmd BufWritePre     *.js :call TrimWhiteSpace()
 :au BufWinEnter * let w:m1=matchadd('Search', '\%<100v.\%>95v', -1)
