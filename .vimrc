@@ -1,8 +1,6 @@
 execute pathogen#infect()
-set statusline=%f:%l
-set statusline+=%m%r%h%w
-set statusline+=\ %{fugitive#statusline()}
-set laststatus=2
+
+let g:go_fmt_command = "goimports"
 set showmode
 set autoread
 " ================ Turn Off Swap Files ==============
@@ -14,15 +12,20 @@ set tags=./tags
 nnoremap <leader>a <C-a>
 nnoremap <leader>x <C-x>
 
-inoremap <esc> <nop>
 inoremap jk <esc>:w<cr>
 
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
-nnoremap <leader>j f04s
+nnoremap <leader>d :cclose<cr>
 nnoremap <leader>s :setlocal spell spelllang=en_gb<cr>
 nnoremap <leader>so :setlocal spell!<cr>
 nnoremap <leader>sp :set paste!<cr>
+nnoremap <leader>se :Ag <C-r><C-w><cr>
+nnoremap <leader>qq ysiw'
+nnoremap <leader>gs :Gstatus<cr>
+nnoremap <leader>gp :Git push<cr>
+au FileType go nmap <leader>gd <Plug>(go-doc)
+
 
 set wrap linebreak nolist
 set nocompatible
@@ -69,17 +72,22 @@ let g:gist_clip_command = 'pbcopy'
 let g:gist_detect_filetype = 1
 let g:gist_post_private = 1
 
-
 au FileType go nmap <Leader>gd <Plug>(go-doc)
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
+au FileType go nmap <leader>m :make<CR>
+ set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
+"autocmd BufWritePost,FileWritePost *.go execute 'Lint' | cwindow
 
 let g:solarized_termcolors=256
 syntax enable
 set background=dark
-colorscheme solarized
+colorscheme spring-night
 
 " This is to allow vim to copy and paste between tmux
 set clipboard=unnamed
+
+set laststatus=2
+set statusline=\ %f%m%r%h%w\ %{fugitive#statusline()}\ %=%([%l]\ %)
